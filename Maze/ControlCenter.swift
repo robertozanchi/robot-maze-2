@@ -81,7 +81,7 @@ class ControlCenter {
         // TODO: If the robot encounters a two way path and there IS a wall ahead, it should turn in the direction of the clear path.
         
         if isTwoWayPath && robotIsBlocked {
-            randomlyRotateRightOrLeft(myRobot)
+            turnTowardClearPath(myRobot, wallInfo: myWallInfo)
         }
         
         // Step 4d
@@ -213,6 +213,10 @@ class ControlCenter {
         if robot.direction == .Left && wallInfo.down {
             robot.rotateRight()
         } else if robot.direction == .Up && wallInfo.left {
+            robot.rotateRight()
+        } else if robot.direction == .Right && wallInfo.up {
+            robot.rotateRight()
+        } else if robot.direction == .Down && wallInfo.right {
             robot.rotateRight()
         } else {
             robot.rotateLeft()
